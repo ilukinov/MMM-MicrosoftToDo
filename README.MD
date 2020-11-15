@@ -89,7 +89,6 @@ modules: [
       oauth2RefreshToken: 'MCVDmtyumC8ZdlGxrkMwCdur4FbPh7GHjy1gOaOHEA8*c5tTI4oIcJAHU8AflLZMLmcCRWNEa7nMkag2hbipYbZ3QgL9JB1G6Hc*JZY9oA5j46Cq79b6BDx8mivTVen0r*39h2hw9pngKS7MGXjKc9efwayQ7UhsFoCJ2wdhLJzv5gTR2EozgcsKsxHODj!1fV8a1sqVqJ!sU*CBLTMsm0twI2hZqsCkPoSWaMIS5kKFAq7bCsfNaumS11TZYni3XjVwuyHn4DEqfLGjHuSNo1TYRifcG422MdG6bYt7tBxWiw5dlq2iIEMl6O*N2sLWU7W0Ns2*oQbcXIFxRsZ8cHP*6M9dn*9Axg8WbtERj!*jHTfC!Ax6IILXrHDJkdAXgh01PVH!huztVrgd0UC6E4R4zJSOa4ytOKWfQcL9h0NdA',
       oauth2ClientId: '4ef19f40-4892-4905-b999-76041e991f53',
       listName: 'Shopping List', // optional parameter: if not specified displays tasks from default "Tasks" list, if specified will look for a task list with the specified name (exact spelling)
-      listId: 'AQMkADAwATNiZmYAZC1iODgANS1hNGMyLTAwAi0wMAoALgAAA1Lh_i4gMGJMlZDpJ2d8iWwBAB_qpxIEaN5AgOOJ-T1mRJ8AAzJQqfYAAAA=', // deprecated parameter: use listName instead
       showCheckbox: true, // optional parameter: default value is true and will show a checkbox before each todo list item
       showDueDate: false, // optional parameter: default value is false and will show the todo list items due date if it exists on the todo list item
       dateFormat: 'ddd MMM Do [ - ]', //optional parameter: uses moment date format and the default value is 'ddd MMM Do [ - ]'
@@ -98,6 +97,13 @@ modules: [
       itemLimit: 200, // optional parameter: limit on the number of items to show from the list, default value is 200
       orderBy: 'subject', // optional parameter: 'subject' - order results by subject/name, 'dueDate' - order results by due date, default value is unordered
       completeOnClick: true, // optional parameter: default value is false, when set to true complete task when clicking on it
+      tagColorsEnabled: true, // optional parameter: default value is false, enable #tag coloring
+      tagColors: {      // optional parameter: if tagCororsEnabled = true this object will be used to determine colors for each tag,
+        default: "#ededed", //default one will be used for any tag that is not defined in this object
+        work: '#fcfbd5',  // #work will be colored with #fcfbd5 color
+        personal: '#d5fcdb', // example for #personal tag
+        important: '#fecfcf', // example for #important tag
+      },
       refreshSeconds: 60, // optional parameter: every how many seconds should the list be updated from the remote service, default value is 60
     }
   },

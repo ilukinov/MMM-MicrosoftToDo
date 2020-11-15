@@ -43,21 +43,23 @@ Module.register('MMM-MicrosoftToDo', {
         if (taskDue != '') {
             listItem.appendChild(document.createTextNode(taskDue))
         }
-        
-        // extract tags (#Tag) from subject an display them differently
-        var subjectTokens = element.subject.match(/((#[^\s]+)|(?!\s)[^#]*|\s+)+?/g)
-        for (var i=0; i < subjectTokens.length; i++) {
-            if (subjectTokens[i].startsWith("#")) {
-                var tagNode =document.createElement('span')
-                tagNode.innerText = subjectTokens[i]
-                if (self.config.highlightTagColor != null) {
-                    tagNode.style.color = self.config.highlightTagColor
-                }
-                listItem.appendChild(tagNode)
-            } else {
-                listItem.appendChild(document.createTextNode(subjectTokens[i]))
-            }
-        }
+
+		// extract tags (#Tag) from subject and display them differently
+
+			var subjectTokens = element.subject.match(/((#[^\s]+)|(?!\s)[^#]*|\s+)+?/g)
+			var defaultColor = self.config.tagColors.default || 'yellow'
+			for (var i=0; i < subjectTokens.length; i++) {
+				if (self.config.tagColorsEnabled && subjectTokens[i].startsWith("#")) {
+					var tagNode = document.createElement('span')
+					var tagColor = self.config.tagColors[subjectTokens[i].substring(1)] || defaultColor
+					tagNode.innerText = subjectTokens[i]
+					tagNode.style.color = tagColor
+					listItem.appendChild(tagNode)
+				} else {
+					listItem.appendChild(document.createTextNode(subjectTokens[i]))
+				}
+			}
+
 
         // complete task when clicked on it
         if (self.config.completeOnClick) {
